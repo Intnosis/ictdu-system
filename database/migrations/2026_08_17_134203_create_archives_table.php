@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('archives', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('category');
+            $table->string('file_path');
+            $table->foreignId('uploaded_by')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
