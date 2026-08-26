@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->date('event_date');
+            $table->string('location')->nullable();
+            $table->enum('type', ['hackaton', 'competition', 'seminar', 'training'])->default('pending');
             $table->timestamps();
         });
     }
