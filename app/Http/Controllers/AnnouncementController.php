@@ -12,7 +12,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        return Announcement::all();
+        return response()->json(Announcement::all(), 200);
     }
 
     /**
@@ -20,7 +20,12 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        $announcement = Announcement::create($request->all());
+        $validate = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|text',
+
+        ]);
+        $announcement = Announcement::create($validate);
         return response()->json($announcement, 201);
         }
 
@@ -37,8 +42,12 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, Announcement $announcement)
     {
-        $announcement->update($request->all());
-        return response($announcement,200);
+        $validate = $request->validate([
+            'title' => 'sometimes|required|string|max:255',
+            'content' => 'sometimes|required|text',
+        ]);
+        $announcement->update($validate);
+        return response()->json($announcement);
     }
 
     /**

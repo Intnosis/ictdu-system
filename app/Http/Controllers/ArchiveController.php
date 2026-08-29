@@ -12,7 +12,7 @@ class ArchiveController extends Controller
      */
     public function index()
     {
-        //
+        return response() ->json(Archive::all(), 200);
     }
 
     /**
@@ -20,7 +20,10 @@ class ArchiveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->calidate([
+            'name' => 'required|string|max:255',
+            'category' => 'require' ,
+        ]);
     }
 
     /**
