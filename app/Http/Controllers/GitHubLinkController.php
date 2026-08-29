@@ -12,7 +12,8 @@ class GitHubLinkController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(GitHubLink::all(), 200);
+
     }
 
     /**
@@ -20,15 +21,21 @@ class GitHubLinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'project_name' => 'required|string|max:255',
+            'repo_link' => 'required|url|string|max:255',
+            'description' => 'required|string|text',
+            'tech_stack' => 'required|nullable|string|max:255',
+            'status' => 'required|string|max:255',
+            ]);
+
+        $gitHubLink = GitHubLink::create($validate);
+        return response()->json($gitHubLink, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(GitHubLink $gitHubLink)
     {
-        //
+        return response()->json(GitHubLink::find($gitHubLink->id),200);
     }
 
     /**
@@ -36,7 +43,16 @@ class GitHubLinkController extends Controller
      */
     public function update(Request $request, GitHubLink $gitHubLink)
     {
-        //
+        $validate = $request->validate([
+            'project_name' => 'required|string|max:255',
+            'repo_link' => 'required|url|string|max:255',
+            'description' => 'required|string|text',
+            'tech_stack' => 'required|nullable|string|max:255',
+            'status' => 'required|string|max:255',
+        ]);
+
+        $gitHubLink->update($validate);
+        return response()->json($gitHubLink, 200);
     }
 
     /**
@@ -44,6 +60,9 @@ class GitHubLinkController extends Controller
      */
     public function destroy(GitHubLink $gitHubLink)
     {
-        //
+        $gitHubLink->delete();
+        return response()->json(
+            ["message" => "GitHub link deleted successfully"]
+        );
     }
 }
