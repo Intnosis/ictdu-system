@@ -12,7 +12,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        //
+        return Announcement::all();
     }
 
     /**
@@ -20,15 +20,16 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $announcement = Announcement::create($request->all());
+        return response()->json($announcement, 201);
+        }
 
     /**
      * Display the specified resource.
      */
     public function show(Announcement $announcement)
     {
-        //
+        return response()->json($announcement);
     }
 
     /**
@@ -36,7 +37,8 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, Announcement $announcement)
     {
-        //
+        $announcement->update($request->all());
+        return response($announcement,200);
     }
 
     /**
@@ -44,6 +46,9 @@ class AnnouncementController extends Controller
      */
     public function destroy(Announcement $announcement)
     {
-        //
+        $announcement->delete();
+        return response()->json(
+            ["message" => "Announcement deleted successfully"]
+        );
     }
 }
