@@ -29,4 +29,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function gitHubLinks()
+    {
+        return $this->hasMany(GitHubLink::class);
+    }
 }
