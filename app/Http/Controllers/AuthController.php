@@ -42,9 +42,13 @@ class AuthController extends Controller
             ]);
         }
 
+        $user = Auth::user();
+        $token = $user->createToken('auth_token')->plainTextToken;
+
         return response()->json([
             'message' => 'You Successfully Login',
-            'login' => Auth::user(),
+            'login' => $user,
+            'token' => $token,
         ]);
     }
 }
