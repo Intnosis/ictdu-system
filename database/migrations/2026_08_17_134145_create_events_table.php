@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->date('event_date');
             $table->string('location')->nullable();
-            $table->enum('type', ['hackaton', 'competition', 'seminar', 'training'])->default('pending');
+            $table->enum('type', ['hackaton', 'competition', 'seminar', 'training'])->default('hackaton');
             $table->timestamps();
         });
     }
