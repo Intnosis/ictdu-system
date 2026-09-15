@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Illuminate\Support\Facade\Auth;
+use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     public function register(Request $request)
@@ -30,13 +30,13 @@ class AuthController extends Controller
         ]);
 }
     public function login(Request $request){
-        $login = $request->valid([
+        $login = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
 
         ]);
 
-        if(!Auth::attemp($login)){
+        if(!Auth::attempt($login)){
             return response()->json([
                 'message' => 'Incorrect Credentials',
             ]);
@@ -44,7 +44,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'You Successfully Login',
-            'login' => $login,
+            'login' => Auth::user(),
         ]);
     }
 }
