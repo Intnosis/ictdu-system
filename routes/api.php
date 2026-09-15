@@ -9,9 +9,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamMemberController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\Auth\AuthenticationController;
 
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::apiResource('announcements', AnnouncementController::class);
 Route::apiResource('deadlines', DeadlineController::class);
