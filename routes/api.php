@@ -16,6 +16,8 @@ use App\Http\Controllers\Auth\AuthenticationController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::middleware('auth::sanctum')->group(function() {
+
 Route::apiResource('announcements', AnnouncementController::class);
 Route::apiResource('deadlines', DeadlineController::class);
 Route::apiResource('github-links', GitHubLinkController::class);
@@ -24,5 +26,9 @@ Route::apiResource('archives', ArchiveController::class);
 Route::apiResource('profiles', ProfileController::class);
 Route::apiResource('teams', TeamController::class);
 Route::apiResource('events', EventController::class);
+
+
+});
+
 
 
