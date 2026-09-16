@@ -22,7 +22,8 @@ class UserRoleController extends Controller
     {
         $user_role = $request->validate([
             'role_name' => 'require|string|max:255',
-            'description' => 'nullable|string'
+            'description' => 'nullable|string',
+            'role_id' => $role->id
         ]);
 
         $role = UserRole::create($user_role);
