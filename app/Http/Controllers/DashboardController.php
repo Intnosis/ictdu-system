@@ -2,25 +2,26 @@
 
 namespace App\Http\Controller;
 
-use App\Model\User;
-use App\Model\Announcement;
-use App\Model\GitHubLink;
-use App\Model\Report;
-use App\Model\Event;
-use App\Model\Deadline;
+use App\Models\User;
+use App\Models\Announcement;
+use App\Models\GitHubLink;
+use App\Models\Report;
+use App\Models\Event;
+use App\Models\Deadline;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller{
 
     public function index()
     {
-        return reponse()->json([
+        return response()->json([
         'total_users' => User::count(),
         'total_announcements' => Announcement::count(),
         'total_deadlines' => Deadline::count(),
         'total_github_projects' => GitHubLink::count(),
         'total_reports' => Report::count(),
         'total_events' => Event::count(),
-        'total_deadlines' => Deadline::count(),
+        
         
         'recent_announcements' => Announcement::latest()
             ->take(5)->get(),
