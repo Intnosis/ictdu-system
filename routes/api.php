@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\AuthenticationController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/dashboard', [AuthController::class, 'index'])->middleware('auth:sanctum');
 
 Route::middleware('auth::sanctum')->group(function() {
 
