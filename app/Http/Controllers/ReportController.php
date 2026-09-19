@@ -12,7 +12,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Report::all(), 200);
     }
 
     /**
@@ -20,7 +20,12 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+        $report = Report::create($validation);
+        return response()->json($report, 201);
     }
 
     /**
@@ -28,7 +33,7 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        //
+        return response()->json($report);
     }
 
     /**
@@ -36,7 +41,12 @@ class ReportController extends Controller
      */
     public function update(Request $request, Report $report)
     {
-        //
+        $validate = $request->validate([
+            'tile' => 'required|string|max255',
+            'description' => 'required|string',
+        ]);
+        $report ->update($validate);
+        return response()->json($report);
     }
 
     /**
@@ -44,6 +54,9 @@ class ReportController extends Controller
      */
     public function destroy(Report $report)
     {
-        //
+        $report->delete();
+        return response()->json([
+            'message' => 'Report successfully deleted'
+        ]);
     }
 }
