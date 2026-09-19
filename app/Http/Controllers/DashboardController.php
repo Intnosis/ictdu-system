@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controller;
+namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Announcement;
@@ -21,20 +21,20 @@ class DashboardController extends Controller{
         'total_github_projects' => GitHubLink::count(),
         'total_reports' => Report::count(),
         'total_events' => Event::count(),
-        
-        
+
+
         'recent_announcements' => Announcement::latest()
             ->take(5)->get(),
-            
+
         'upcomming_deadlines' => Deadline::where('deadline', '>=',
             now()->toDateString()
             )
             ->orderBy('deadline')
             ->take(5)
             ->get()
-            
+
             ]);
-            
+
         }
 
 }

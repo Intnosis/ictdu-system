@@ -10,12 +10,12 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamMemberController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\COntrollers\DashboardController;
 use App\Http\Controllers\Auth\AuthenticationController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/dashboard', [AuthController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth:sanctum');
 
 Route::middleware('auth::sanctum')->group(function() {
 
