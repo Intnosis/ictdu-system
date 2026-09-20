@@ -24,8 +24,14 @@ class ArchiveController extends Controller
             'name' => 'required|string|max:255',
             'category' => 'require|d|string|max:255',
             'file_path' => 'required|string|max:255',
-            'uploaded_by'
+            'uploaded_by' => 'required|id|exists:users,id',
         ]);
+
+    $archive = $request->user()->archives()->create($validate);
+    return response()->json([
+        'message' => 'Arcvhive Successfully Created',
+        'archive' => $archive
+    ]);
     }
 
     /**
@@ -33,7 +39,7 @@ class ArchiveController extends Controller
      */
     public function show(Archive $archive)
     {
-        //
+        return response()->json($archive);
     }
 
     /**
@@ -41,7 +47,17 @@ class ArchiveController extends Controller
      */
     public function update(Request $request, Archive $archive)
     {
-        //
+        $validation = $request->validate([
+            'name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'file_path' => 'required|string|max:255',
+            'uploaded_by' => 'required|id|exists:users,id',
+        ]);
+        $archive->update($validation);
+        return response()->json([
+            'message' => 'Archive Successfully Updated',
+            'archive' => $archive
+        ]);
     }
 
     /**
@@ -49,6 +65,9 @@ class ArchiveController extends Controller
      */
     public function destroy(Archive $archive)
     {
-        //
+        $archive->delete();
+        return response()->json([
+            'message' => 'Archive Successfully Deleted'
+        ]);
     }
 }
