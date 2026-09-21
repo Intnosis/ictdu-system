@@ -10,14 +10,20 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamMemberController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AuthController;
-use App\Http\COntrollers\DashboardController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\AuthenticationController;
+use Illuminate\Http\Request;
+
+Route::middleware('auth:sanctum')->get('/me', function(Request $request)
+{
+    return $request->user();
+    });
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth:sanctum');
 
-Route::middleware('auth::sanctum')->group(function() {
+Route::middleware('auth:sanctum')->group(function() {
 
 Route::apiResource('announcements', AnnouncementController::class);
 Route::apiResource('deadlines', DeadlineController::class);
