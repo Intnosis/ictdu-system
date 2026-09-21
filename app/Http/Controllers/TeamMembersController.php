@@ -12,7 +12,7 @@ class TeamMembersController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Team_Members::all());
     }
 
     /**
@@ -20,7 +20,15 @@ class TeamMembersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $create = $request->validate([
+            'position' => 'required|enum:Frontend, Backend, UI/UX, Developer Operations, Quality Assurance, Artificial Intelligence, Business Management'
+        ]);
+
+        $team_members = $request->user()->team__members()->create($create);
+        return response()->json([
+            'message' => 'Team Members, Successfully Created!',
+            'team_members' => $team_members
+        ]);
     }
 
     /**
@@ -28,7 +36,7 @@ class TeamMembersController extends Controller
      */
     public function show(Team_Members $team_Members)
     {
-        //
+        return response()->json($team_Members);
     }
 
     /**
@@ -36,7 +44,20 @@ class TeamMembersController extends Controller
      */
     public function update(Request $request, Team_Members $team_Members)
     {
-        //
+        $update = $request->validate([
+            'position' => 'required|enum:Frontend, 
+                            Backend, UI/UX, Developer Operations,  
+                            Quality Assurance, Artificial Intelligence, 
+                            Business Management'
+
+
+        ]);
+
+        $team_Members->update($update);
+            return response()->json([
+                'message' => 'Position Successfully Created!',
+                'team_members' => $team_Members
+            ]);
     }
 
     /**
@@ -44,6 +65,9 @@ class TeamMembersController extends Controller
      */
     public function destroy(Team_Members $team_Members)
     {
-        //
+        $team_Members->delete();
+        return response()->json([
+            'message' => 'Team mebers Successfully Deleted!'
+        ]);
     }
 }
