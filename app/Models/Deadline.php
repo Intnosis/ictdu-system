@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Deadline extends Model
 {
     protected $fillable = [
-    'title',
-    'description',
-    'deadline',
-    'user_id'
+        'title',
+        'description',
+        'deadline',
+        'user_id'
     ];
     
-//     public function user ()
-//     {
-//         return $this->belongsTo(User::Class);
-// }
+    public function user ()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -12,4 +12,9 @@ class Archive extends Model
         'file_path',
         'uploaded_by'
     ];
+
+    public function user ()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
