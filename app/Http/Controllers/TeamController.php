@@ -12,7 +12,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        return response()->json()
+        return response()->json(Team::all());
     }
 
     /**
@@ -20,7 +20,17 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'team_name' => 'required|string|max:255',
+            'description' => 'required|string|max:255'
+        ]);
+
+        $team = Team::create($validation);
+        return response()->json([
+            'message' => 'Team Successfully Created!',
+            'store' => $team,
+        ]);
+
     }
 
     /**
@@ -28,7 +38,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        //
+        return response()->json($team);
     }
 
     /**
@@ -36,7 +46,15 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
-        //
+        $validate = $request->validate([
+            'team_name' => 'somtimes|string|max:255',
+            'description' => 'somtimes|string|max:255'
+        ]);
+        $team->update($validate);
+        return response()->json([
+            'message' => 'Team Successfully Updated',
+            'team' => $team
+        ]);
     }
 
     /**
@@ -44,6 +62,9 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        //
+        $team->delete();
+        return response()->json([
+            'message' => 'Team Successfully Deleted'
+        ]);
     }
 }
