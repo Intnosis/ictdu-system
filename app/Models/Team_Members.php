@@ -11,6 +11,10 @@ class Team_Members extends Model
         'positions'
     ];
 
+    protected $hidden = [
+        'timestamps'
+    ];
+    
     public function user(){
         return $this->belongsTo(User::class);
     }
