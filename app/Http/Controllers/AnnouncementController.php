@@ -26,7 +26,10 @@ class AnnouncementController extends Controller
 
         ]);
         $announcement = Announcement::create($validate);
-        return response()->json($announcement, 201);
+        return response()->json([
+            'message' => 'Announcement Successfully Created!',
+            'announcement' => $announcement
+        ]);
         }
 
     /**
