@@ -22,7 +22,7 @@ class AnnouncementController extends Controller
     {
         $validate = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|text',
+            'content' => 'somtimes|string|max:255',
 
         ]);
         $announcement = Announcement::create($validate);
@@ -47,7 +47,7 @@ class AnnouncementController extends Controller
     {
         $validate = $request->validate([
             'title' => 'sometimes|required|string|max:255',
-            'content' => 'sometimes|required|text',
+            'content' => 'sometimes|required|string|max:255',
         ]);
         $announcement->update($validate);
         return response()->json($announcement);
