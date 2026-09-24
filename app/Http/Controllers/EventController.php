@@ -28,6 +28,9 @@ class EventController extends Controller
             'type' => 'required|enum:comptition,hackathon,seminar,training',
             ]);
 
+            $user = $request->user();
+            $validate['user_id']
+
         $event = Event::create($validate);
         return response()->json([
             'message'=>'Event Successfully Created',
