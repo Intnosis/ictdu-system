@@ -56,6 +56,7 @@ class AnnouncementController extends Controller
 
         $user = $request->user();
         $validate['user_id'] = $user->id;
+        
         $announcement->update($validate);
         return response()->json($announcement);
     }

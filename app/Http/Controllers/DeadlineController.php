@@ -24,8 +24,12 @@ class DeadlineController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'deadline' => 'required|date',
-            'user_id' => 'required|exists:users,id',
+            
         ]);
+
+        $user = $request->user();
+        $validate['user_id'] = $user->id;
+
         $deadline = Deadline::create($validate);
         return response()->json($deadline, 201);
     }
@@ -47,8 +51,12 @@ class DeadlineController extends Controller
             'title' => 'sometimes|required|string|max:255',
             'description' => 'sometimes|required|string',
             'deadline' => 'sometimes|required|date',
-            'user_id' => 'sometimes|required|exists:users,id',
+            
         ]);
+
+        $user = $request->user();
+        $validate['user_id'] = $user->id;
+
         $deadline->update($validate);
         return response()->json($deadline);
     }
