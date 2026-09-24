@@ -12,7 +12,7 @@ class Announcement extends Model
     ];
 
     protected $hidden = [
-      'timetamps'
+      'timestamps'
     ];
     public function user()
     {
