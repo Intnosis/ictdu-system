@@ -57,12 +57,14 @@ class EventController extends Controller
             'location' => 'nullable|string|max:255',
             'type' => 'required|enum:comptition,hackathon,seminar,training',
        ]);
+
         $user = $request->user();
         $validation['user_id'] = $user->id;
-       $event->update($validation);
-       return response()->json([
-           'message' => 'Event Successfully Updated',
-           'event' => $event
+            
+        $event->update($validation);
+        return response()->json([
+            'message' => 'Event Successfully Updated',
+            'event' => $event
        ]);
     }
 
