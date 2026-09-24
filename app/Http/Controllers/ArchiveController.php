@@ -24,13 +24,15 @@ class ArchiveController extends Controller
             'name' => 'required|string|max:255',
             'category' => 'required|string|max:255',
             'file_path' => 'required|string|max:255',
-            'uploaded_by' => 'required|id|exists:users,id',
+            'uploaded_by' => 'required|exists:users,id',
         ]);
 
-    $archive = $request->user()->archives()->create($validate);
-    return response()->json([
-        'message' => 'Arcvhive Successfully Created',
-        'archive' => $archive
+        $validate['uploaded_by'] = $request->user();
+
+        $archive = Archive::create($validate);
+        return response()->json([
+            'message' => 'Arcvhive Successfully Created',
+            'archive' => $archive
     ]);
     }
 
