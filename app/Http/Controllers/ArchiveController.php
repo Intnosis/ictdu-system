@@ -23,7 +23,7 @@ class ArchiveController extends Controller
         $validate = $request->validate([
             'name' => 'required|string|max:255',
             'category' => 'required|string|max:255',
-            'file_path' => 'required|string',
+            'file_path' => 'required|string|max:255',
         ]);
 
         $validate['uploaded_by'] = $request->user()->id;
@@ -31,7 +31,7 @@ class ArchiveController extends Controller
         $archive = Archive::create($validate);
         return response()->json([
             'message' => 'Arcvhive Successfully Created',
-            'archive' => $archive
+            'archive' => $archive   
     ]);
     }
 
@@ -54,6 +54,8 @@ class ArchiveController extends Controller
             'file_path' => 'required|string|max:255',
             
         ]);
+
+        $validation['uploaded_by'] = $request->user()->id;
         $archive->update($validation);
         return response()->json([
             'message' => 'Archive Successfully Updated',
