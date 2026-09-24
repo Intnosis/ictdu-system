@@ -22,7 +22,7 @@ class ArchiveController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required|string|max:255',
-            'category' => 'require|d|string|max:255',
+            'category' => 'required|string|max:255',
             'file_path' => 'required|string|max:255',
             'uploaded_by' => 'required|id|exists:users,id',
         ]);
