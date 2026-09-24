@@ -23,11 +23,10 @@ class ArchiveController extends Controller
         $validate = $request->validate([
             'name' => 'required|string|max:255',
             'category' => 'required|string|max:255',
-            'file_path' => 'required|string|max:255',
-            'uploaded_by' => 'required|exists:users,id',
+            'file_path' => 'required|string',
         ]);
 
-        $validate['uploaded_by'] = $request->user();
+        $validate['uploaded_by'] = $request->user()->id;
 
         $archive = Archive::create($validate);
         return response()->json([
@@ -53,7 +52,7 @@ class ArchiveController extends Controller
             'name' => 'required|string|max:255',
             'category' => 'required|string|max:255',
             'file_path' => 'required|string|max:255',
-            'uploaded_by' => 'required|id|exists:users,id',
+            
         ]);
         $archive->update($validation);
         return response()->json([

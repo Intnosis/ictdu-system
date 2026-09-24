@@ -51,8 +51,11 @@ class AnnouncementController extends Controller
     {
         $validate = $request->validate([
             'title' => 'sometimes|required|string|max:255',
-            'content' => 'required|string|max:255',
+            'content' => 'required|string',
         ]);
+
+        $user = $request->user();
+        $validate['user_id'] = $user->id;
         $announcement->update($validate);
         return response()->json($announcement);
     }
