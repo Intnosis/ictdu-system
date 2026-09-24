@@ -25,7 +25,7 @@ class EventController extends Controller
             'description' => 'required|string',
             'date' => 'required|date',
             'location' => 'nullable|string|max:255',
-            'type' => 'required|enum:comptition,hackathon,seminar,training',
+            'type' => 'required|in:competition,hackathon,seminar,training',
             ]);
 
             $user = $request->user();
@@ -52,10 +52,10 @@ class EventController extends Controller
     {
        $validation = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string|text',
+            'description' => 'required|string',
             'date' => 'required|date',
             'location' => 'nullable|string|max:255',
-            'type' => 'required|enum:comptition,hackathon,seminar,training',
+            'type' => 'required|in:competition,hackathon,seminar,training',
        ]);
 
         $user = $request->user();
