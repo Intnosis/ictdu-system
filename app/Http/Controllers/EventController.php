@@ -20,7 +20,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validate = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'date' => 'required|date',
@@ -28,7 +28,7 @@ class EventController extends Controller
             'type' => 'required|enum:comptition,hackathon,seminar,training',
             ]);
 
-        $event = $request->user()->events()->create($request->all());
+        $event = Event::create($validate);
         return response()->json([
             'message'=>'Event Successfully Created',
             'event'=> $event,
