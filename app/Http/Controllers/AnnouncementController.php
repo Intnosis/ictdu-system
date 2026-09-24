@@ -25,6 +25,10 @@ class AnnouncementController extends Controller
             'content' => 'required|string',
 
         ]);
+
+        $user = $request->user();
+        $validate['user_id'] = $user->id;
+
         $announcement = Announcement::create($validate);
         return response()->json([
             'message' => 'Announcement Successfully Created!',
