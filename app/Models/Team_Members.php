@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Team_Members extends Model
 {
     protected $fillable = [
-        'positions'
+        'positions',
+        'team_id',
+        'team_user'
     ];
 
     protected $hidden = [
