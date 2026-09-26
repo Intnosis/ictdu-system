@@ -29,6 +29,9 @@ class GitHubLinkController extends Controller
             'status' => 'required|string|max:255',
             ]);
 
+        $user = $request->user();
+        $validate['user_id'] = $user->id;
+
         $gitHubLink = GitHubLink::create($validate);
         return response()->json($gitHubLink, 201);
     }
@@ -50,6 +53,9 @@ class GitHubLinkController extends Controller
             'tech_stack' => 'required|nullable|string|max:255',
             'status' => 'required|string|max:255',
         ]);
+
+        $user = $request->user();
+        $validate['user_id'] = $user->id;
 
         $gitHubLink->update($validate);
         return response()->json($gitHubLink, 200);
