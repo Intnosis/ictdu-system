@@ -8,7 +8,8 @@ class Report extends Model
 {
     protected $fillable = [
         'tile',
-        'descrition'
+        'descrition',
+        'user_id'
     ];
 
     public function user()
