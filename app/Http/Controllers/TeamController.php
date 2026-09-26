@@ -25,6 +25,9 @@ class TeamController extends Controller
             'description' => 'required|string|max:255'
         ]);
 
+        $event = $request->event();
+        $validation = $event->id;
+
         $team = Team::create($validation);
         return response()->json([
             'message' => 'Team Successfully Created!',
@@ -50,6 +53,10 @@ class TeamController extends Controller
             'team_name' => 'somtimes|string|max:255',
             'description' => 'somtimes|string|max:255'
         ]);
+
+        $event = $request->event();
+        $validate = $event->id;
+        
         $team->update($validate);
         return response()->json([
             'message' => 'Team Successfully Updated',
