@@ -6,7 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class GitHubLink extends Model
 {
-    protected $fillable = [ 'project_name', 'repo_link', 'description', 'tech_stack', 'status'];
+    protected $fillable = [ 
+    'project_name', 
+    'repo_link', 
+    'description', 
+    'tech_stack', 
+    'status',
+    'user_id'
+    ];
 
     public function user()
     {
