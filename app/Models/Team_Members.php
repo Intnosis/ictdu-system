@@ -10,7 +10,7 @@ class Team_Members extends Model
     protected $fillable = [
         'positions',
         'team_id',
-        'team_user'
+        'user_id'
     ];
 
     protected $hidden = [
