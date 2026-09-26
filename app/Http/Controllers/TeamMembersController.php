@@ -31,6 +31,9 @@ class TeamMembersController extends Controller
         ]);
     }
 
+    #Eloquent: Mutators & Casting this is what needed on migrations
+
+
     /**
      * Display the specified resource.
      */
