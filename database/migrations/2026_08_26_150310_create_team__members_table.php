@@ -23,9 +23,12 @@ return new class extends Migration
                 'Quality Assurance',
                 'Artificiali Intelligence',
                 'Business Management'
+                        
 
             ]);
             $table->timestamps();
+
+            $table->unique(['team_id', 'user_id']);
         });
     }
 
