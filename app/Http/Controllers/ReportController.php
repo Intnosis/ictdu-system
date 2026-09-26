@@ -24,6 +24,8 @@ class ReportController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
+        $user = $request->user();
+        $validation['user_id'] = $user->id;
         $report = Report::create($validation);
         return response()->json($report, 201);
     }
@@ -45,6 +47,8 @@ class ReportController extends Controller
             'tile' => 'required|string|max255',
             'description' => 'required|string',
         ]);
+        $user = $request->user();
+        $validate['user_id'] = $user->id;
         $report ->update($validate);
         return response()->json($report);
     }
