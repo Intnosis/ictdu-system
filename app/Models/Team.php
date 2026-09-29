@@ -9,7 +9,7 @@ class Team extends Model
     protected $fillable = [
         'event_id',
         'team_name',
-        'deacription'
+        'description'
     ];
 
     public function team_members()

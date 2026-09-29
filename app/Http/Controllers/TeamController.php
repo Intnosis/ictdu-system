@@ -50,8 +50,8 @@ class TeamController extends Controller
     public function update(Request $request, Team $team)
     {
         $validate = $request->validate([
-            'team_name' => 'somtimes|string|max:255',
-            'description' => 'somtimes|string|max:255'
+            'team_name' => 'required|string|max:255',
+            'description' => 'required|string|max:255'
         ]);
 
         $validate['event_id'] = $request->user()->id;
