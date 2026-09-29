@@ -10,7 +10,7 @@ class Event extends Model
     protected $filable = [
         'title',
         'description',
-        'date',
+        'event_date',
         'location',
         'type',
         'user_id'
