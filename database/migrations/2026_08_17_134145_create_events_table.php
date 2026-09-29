@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('team_id')->constrained('teams')->onDelete('cascade');
             $table->string('title');
             $table->text('description');
-            $table->date('event_date')->constrained('users')->onDelete('cascade');
+            $table->date('event_date');
             $table->string('location')->nullable();
             $table->enum('type', ['hackaton', 'competition', 'seminar', 'training'])->default('hackaton');
-            $table->timestamps();   
+            $table->timestamps();
         });
     }
 
