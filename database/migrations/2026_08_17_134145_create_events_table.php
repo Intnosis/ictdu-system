@@ -16,10 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('title');
             $table->text('description');
-            $table->date('event_date');
+            $table->date('event_date')->constrained('users')->onDelete('cascade');
             $table->string('location')->nullable();
             $table->enum('type', ['hackaton', 'competition', 'seminar', 'training'])->default('hackaton');
-            $table->timestamps();
+            $table->timestamps();   
         });
     }
 
