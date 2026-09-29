@@ -23,7 +23,7 @@ class EventController extends Controller
         $validate = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'date' => 'required|date',
+            'event_date' => 'required|date',
             'location' => 'nullable|string|max:255',
             'type' => 'required|in:competition,hackathon,seminar,training',
             ]);
@@ -53,7 +53,7 @@ class EventController extends Controller
        $validation = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'date' => 'required|date',
+            'event_date' => 'required|date',
             'location' => 'nullable|string|max:255',
             'type' => 'required|in:competition,hackathon,seminar,training',
        ]);

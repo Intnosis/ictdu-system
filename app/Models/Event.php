@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $filable = [
+    protected $fillable = [
         'title',
         'description',
         'event_date',
